@@ -54,8 +54,8 @@ const randomAvatar = `https://api.dicebear.com/7.x/adventurer/svg?seed=${idx}`;
     res.cookie("jwt", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true, // prevent XSS attacks,
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV !== "development" ? "none" : "strict",
+      secure: process.env.NODE_ENV !== "development",
     });
 
     res.status(201).json({ success: true, user: newUser });
@@ -86,8 +86,8 @@ export async function login(req, res) {
     res.cookie("jwt", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true, // prevent XSS attacks,
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV !== "development" ? "none" : "strict",
+      secure: process.env.NODE_ENV !== "development",
     });
 
     res.status(200).json({ success: true, user });
@@ -101,8 +101,8 @@ export function logout(req, res) {
   res.cookie("jwt", "", {
     maxAge: 0,
     httpOnly: true,
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV !== "development" ? "none" : "strict",
+    secure: process.env.NODE_ENV !== "development",
   });
   res.status(200).json({ success: true, message: "Logout successful" });
 }
