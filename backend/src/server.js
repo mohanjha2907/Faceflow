@@ -19,8 +19,6 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://faceflow-two.vercel.app",
-    "https://faceflow-git-main-mohan-kumar-jhas-projects.vercel.app",
-    "https://faceflow-qqg6055iy-mohan-kumar-jhas-projects.vercel.app"
   ],
   credentials: true
 }))
