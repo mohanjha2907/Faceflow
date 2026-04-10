@@ -16,15 +16,19 @@ const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://faceflow-two.vercel.app",
-    "https://faceflow-git-main-mohan-kumar-jhas-projects.vercel.app",
-    "https://faceflow-iym5dr2sn-mohan-kumar-jhas-projects.vercel.app"
-  ],
-  credentials: true
-}))
-
+  origin: function (origin, callback) {
+    if (
+      !origin ||
+      origin.endsWith(".vercel.app") ||
+      origin === "http://localhost:5173"
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
 app.use(express.json());
 app.use(cookieParser());
