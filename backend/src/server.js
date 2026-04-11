@@ -15,20 +15,12 @@ const PORT = process.env.PORT;
 
 const __dirname = path.resolve();
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (
-      !origin ||
-      origin.endsWith(".vercel.app") ||
-      origin === "http://localhost:5173"
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, // allow frontend to send cookies
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
