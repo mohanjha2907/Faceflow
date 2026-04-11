@@ -8,8 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
+dist-ssr        
 .env
 .env.local
 .env.development.local
@@ -26,5 +25,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-.env
